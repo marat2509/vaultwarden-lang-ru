@@ -12,7 +12,7 @@ Base commit: [29144b2](https://github.com/dani-garcia/vaultwarden/commit/29144b2
   | `Account` | `Аккаунт` |
   | `Master password` | `Мастер-пароль` |
   | `Web vault` | `Веб-хранилище` |
-  | `Email` | `Email` |
+  | `Email` | `Email` or `Электронная почта` |
   | `Emergency contact` | `Контакт экстренного доступа` |
 
 </details>
