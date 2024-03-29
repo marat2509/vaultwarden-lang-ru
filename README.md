@@ -1,8 +1,9 @@
 # vaultwarden-lang-ru
 
-Russian translation of all templates from [vaultwarden](https://github.com/dani-garcia/vaultwarden) located in `src/static/templates`.
+Russian translation of all templates from [vaultwarden](https://github.com/dani-garcia/vaultwarden/blob/main/src/static/templates/)
 
-Base commit: [29144b2](https://github.com/dani-garcia/vaultwarden/commit/29144b2ce0d0f894ab20ad42368f1b62eaed3574)
+Base commit: [29144b2](https://github.com/dani-garcia/vaultwarden/commit/29144b2ce0d0f894ab20ad42368f1b62eaed3574)<br>
+Tested on: [1.30.5](https://github.com/dani-garcia/vaultwarden/releases/tag/1.30.5)
 
 <details>
   <summary>Translation notes</summary>
@@ -18,11 +19,13 @@ Base commit: [29144b2](https://github.com/dani-garcia/vaultwarden/commit/29144b2
 
 ## Install
 
-Refer to the [Vaultwarden wiki](https://github.com/dani-garcia/vaultwarden/wiki/Translating-the-email-templates) for the installation guide.
+Refer to the [Vaultwarden wiki](https://github.com/dani-garcia/vaultwarden/wiki/Translating-the-email-templates)
+for the installation guide.
 
 ## Contributing
 
-If you'd like to contribute to the Russian translation of vaultwarden, please follow these steps:
+If you'd like to contribute to the Russian translation of vaultwarden, please
+follow these steps:
 
 1. Fork the repository.
 2. Make your changes in a dedicated branch.
