@@ -23,7 +23,7 @@
                     {{#if page_data.web_vault_enabled}}
                     <dt class="col-sm-5">Установленный веб-интерфейс
                         <span class="badge bg-success d-none" id="web-success" title="Установлена последняя версия.">ОК</span>
-                        <span class="badge bg-warning text-dark d-none" id="web-warning" title="Похоже, обновление уже доступно.">Update</span>
+                        <span class="badge bg-warning text-dark d-none" id="web-warning" title="Похоже, обновление уже доступно.">Обновление</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="web-installed">{{page_data.web_vault_version}}</span>
@@ -93,7 +93,7 @@
                         <span class="badge bg-success" title="Параметр IP_HEADER корректен">Соответствует</span>
                     {{/if}}
                     {{#unless page_data.ip_header_match}}
-                        <span class="badge bg-danger" title="Параметр IP_HEADER не корректен. IP в логах не корректен. Пожалуйста, исправьте.">Не соответствует</span>
+                        <span class="badge bg-danger" title="Параметр IP_HEADER не корректен. IP в логах не корректен">Не соответствует</span>
                     {{/unless}}
                     </dt>
                     <dd class="col-sm-7">
@@ -109,10 +109,10 @@
                     {{!-- End if IP Header Exists --}}
                     <dt class="col-sm-5">Доступ в интернет
                     {{#if page_data.has_http_access}}
-                        <span class="badge bg-success" title="Мы имеем доступ к интернету!">ОК</span>
+                        <span class="badge bg-success" title="Доступ к интернету присутствует.">ОК</span>
                     {{/if}}
                     {{#unless page_data.has_http_access}}
-                        <span class="badge bg-danger" title="Видимо нет доступа к интернету. Пожалуйста, исправьте.">Ошибка</span>
+                        <span class="badge bg-danger" title="Нет доступа к интернету.">Ошибка</span>
                     {{/unless}}
                     </dt>
                     <dd class="col-sm-7">
@@ -134,7 +134,7 @@
                     </dd>
                     <dt class="col-sm-5">DNS (github.com)
                         <span class="badge bg-success d-none" id="dns-success" title="DNS запросы работают!">ОК</span>
-                        <span class="badge bg-danger d-none" id="dns-warning" title="DNS запросы не работают. Пожалуйста, исправьте.">Ошибка</span>
+                        <span class="badge bg-danger d-none" id="dns-warning" title="DNS запросы не работают.">Ошибка</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="dns-resolved">{{page_data.dns_resolved}}</span>
