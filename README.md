@@ -16,3 +16,11 @@ Base commit: [29144b2](https://github.com/dani-garcia/vaultwarden/commit/29144b2
   | `Emergency contact` | `Контакт экстренного доступа` |
 
 </details>
+
+## Install
+
+Clone repo to `data/templates`
+
+```bash
+git clone https://github.com/marat2509/vaultwarden-lang-ru.git data/templates
+```
