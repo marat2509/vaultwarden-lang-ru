@@ -2,7 +2,7 @@
 
 Russian translation of all templates from [vaultwarden](https://github.com/dani-garcia/vaultwarden/blob/main/src/static/templates/)
 
-Base commit: [a2bf8de](https://github.com/dani-garcia/vaultwarden/commit/a2bf8def2a34d0c362115c5964846d0ee2ef311f)<br>
+Base commit: [7d47155](https://github.com/dani-garcia/vaultwarden/commit/7d47155d83e6c47784b18e8293a5a47d3d87d0ea)<br>
 Tested on: [1.30.5](https://github.com/dani-garcia/vaultwarden/releases/tag/1.30.5) and [d42b264a](https://github.com/dani-garcia/vaultwarden/pkgs/container/vaultwarden/238923128?tag=testing)
 
 <details>
