@@ -2,8 +2,8 @@
 
 Russian translation of all templates from [vaultwarden](https://github.com/dani-garcia/vaultwarden/blob/main/src/static/templates/)
 
-Base commit: [7d47155](https://github.com/dani-garcia/vaultwarden/commit/7d47155d83e6c47784b18e8293a5a47d3d87d0ea)<br>
-Tested on: [1.30.5](https://github.com/dani-garcia/vaultwarden/releases/tag/1.30.5) and [d42b264a](https://github.com/dani-garcia/vaultwarden/pkgs/container/vaultwarden/238923128?tag=testing)
+Base commit: [21efc08](https://github.com/dani-garcia/vaultwarden/commit/21efc0800ddfc4378a541c6d507a1cd481496575)</br>
+Tested on: [1.32.1](https://github.com/dani-garcia/vaultwarden/releases/tag/1.32.1)
 
 <details>
   <summary>Translation notes</summary>
@@ -15,6 +15,7 @@ Tested on: [1.30.5](https://github.com/dani-garcia/vaultwarden/releases/tag/1.30
   | `Web vault` | `Веб-хранилище` |
   | `Email` | `Email` or `Электронная почта` |
   | `Emergency contact` | `Контакт экстренного доступа` |
+
 </details>
 
 ## Install
@@ -38,3 +39,4 @@ Found a problem or have a suggestion? Please open an issue [here](https://github
 ## Contributors
 
 - [@marat2509](https://github.com/marat2509) - initial translation and maintenance.
+- [@sovushik](https://github.com/sovushik) - some fixes in translations ([PR #1](https://github.com/marat2509/vaultwarden-lang-ru/pull/2))
