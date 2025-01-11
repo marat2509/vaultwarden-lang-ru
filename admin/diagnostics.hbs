@@ -134,16 +134,16 @@
                     </dd>
                     <dt class="col-sm-5">Websocket включен
                         {{#if page_data.enable_websocket}}
-                        <span class="badge bg-success d-none" id="websocket-success" title="Подключение через Websocket работает">Ok</span>
-                        <span class="badge bg-danger d-none" id="websocket-error" title="Ошибка подключения через Websocket, проверьте конфигурацию вашего reverse proxy сервера!">Error</span>
+                        <span class="badge bg-success d-none" id="websocket-success" title="Подключение через Websocket работает">OK</span>
+                        <span class="badge bg-danger d-none" id="websocket-error" title="Ошибка подключения через Websocket, проверьте конфигурацию вашего reverse proxy сервера!">Ошибка</span>
                         {{/if}}
                     </dt>
                     <dd class="col-sm-7">
                     {{#if page_data.enable_websocket}}
-                        <span class="d-block" title="Подключения через Websocket включены (ENABLE_WEBSOCKET является истиной)."><b>Yes</b></span>
+                        <span class="d-block" title="Подключения через Websocket включены (ENABLE_WEBSOCKET является истиной)."><b>Да</b></span>
                     {{/if}}
                     {{#unless page_data.enable_websocket}}
-                        <span class="d-block" title="Подключения через Websocket выключены (ENABLE_WEBSOCKET является ложью)."><b>No</b></span>
+                        <span class="d-block" title="Подключения через Websocket выключены (ENABLE_WEBSOCKET является ложью)."><b>Нет</b></span>
                     {{/unless}}
                     </dd>
                     <dt class="col-sm-5">DNS (github.com)
