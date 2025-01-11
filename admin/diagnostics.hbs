@@ -132,6 +132,20 @@
                         <span class="d-block" title="У нас прямой доступ в Интернет, исходящий прокси не настроен."><b>Нет</b></span>
                     {{/unless}}
                     </dd>
+                    <dt class="col-sm-5">Websocket включен
+                        {{#if page_data.enable_websocket}}
+                        <span class="badge bg-success d-none" id="websocket-success" title="Подключение через Websocket работает">Ok</span>
+                        <span class="badge bg-danger d-none" id="websocket-error" title="Ошибка подключения через Websocket, проверьте конфигурацию вашего reverse proxy сервера!">Error</span>
+                        {{/if}}
+                    </dt>
+                    <dd class="col-sm-7">
+                    {{#if page_data.enable_websocket}}
+                        <span class="d-block" title="Подключения через Websocket включены (ENABLE_WEBSOCKET является истиной)."><b>Yes</b></span>
+                    {{/if}}
+                    {{#unless page_data.enable_websocket}}
+                        <span class="d-block" title="Подключения через Websocket выключены (ENABLE_WEBSOCKET является ложью)."><b>No</b></span>
+                    {{/unless}}
+                    </dd>
                     <dt class="col-sm-5">DNS (github.com)
                         <span class="badge bg-success d-none" id="dns-success" title="DNS запросы работают!">ОК</span>
                         <span class="badge bg-danger d-none" id="dns-warning" title="DNS запросы не работают.">Ошибка</span>
@@ -166,6 +180,13 @@
                     <dd class="col-sm-7">
                         <span id="domain-server" class="d-block"><b>Сервер:</b> <span id="domain-server-string">{{page_data.admin_url}}</span></span>
                         <span id="domain-browser" class="d-block"><b>Браузер:</b> <span id="domain-browser-string"></span></span>
+                    </dd>
+                    <dt class="col-sm-5">Проверка HTTP ответа
+                        <span class="badge bg-success d-none" id="http-response-success" title="Все заголовки и ответы на HTTP-запросы выглядят нормально">OK</span>
+                        <span class="badge bg-danger d-none" id="http-response-warning" title="Некоторые заголовки или ответы на HTTP-запросы возвращают недопустимые данные!">Ошибка</span>
+                    </dt>
+                    <dd class="col-sm-7">
+                        <span id="http-response-errors" class="d-block"></span>
                     </dd>
                 </dl>
             </div>
