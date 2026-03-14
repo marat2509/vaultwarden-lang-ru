@@ -6,6 +6,9 @@
                 <thead>
                     <tr>
                         <th class="vw-account-details">Пользователь</th>
+                        {{#if sso_enabled}}
+                        <th class="vw-sso-identifier">SSO Идентификатор</th>
+                        {{/if}}
                         <th class="vw-created-at">Создан</th>
                         <th class="vw-last-active">Последняя активность</th>
                         <th class="vw-entries">Записей</th>
@@ -38,6 +41,11 @@
                                 </span>
                             </div>
                         </td>
+                        {{#if ../sso_enabled}}
+                        <td>
+                            <span class="d-block">{{sso_identifier}}</span>
+                        </td>
+                        {{/if}}
                         <td>
                             <span class="d-block">{{created_at}}</span>
                         </td>
@@ -60,13 +68,16 @@
                             {{/each}}
                             </div>
                         </td>
-                        <td class="text-end px-0 small">
+                        <td class="text-end px-1 small">
                             <span data-vw-user-uuid="{{id}}" data-vw-user-email="{{email}}">
                                 {{#if twoFactorEnabled}}
                                 <button type="button" class="btn btn-sm btn-link p-0 border-0 float-right" vw-remove2fa>Удалить все 2FA</button><br>
                                 {{/if}}
                                 <button type="button" class="btn btn-sm btn-link p-0 border-0 float-right" vw-deauth-user>Завершить сессии</button><br>
                                 <button type="button" class="btn btn-sm btn-link p-0 border-0 float-right" vw-delete-user>Удалить пользователя</button><br>
+                                {{#if ../sso_enabled}}
+                                <button type="button" class="btn btn-sm btn-link p-0 border-0 float-right" vw-delete-sso-user>Удалить SSO привязку</button><br>
+                                {{/if}}
                                 {{#if user_enabled}}
                                 <button type="button" class="btn btn-sm btn-link p-0 border-0 float-right" vw-disable-user>Отключить пользователя</button><br>
                                 {{else}}
@@ -142,7 +153,7 @@
 </main>
 
 <link rel="stylesheet" href="{{urlpath}}/vw_static/datatables.css" />
-<script src="{{urlpath}}/vw_static/jquery-3.7.1.slim.js"></script>
+<script src="{{urlpath}}/vw_static/jquery-4.0.0.slim.js"></script>
 <script src="{{urlpath}}/vw_static/datatables.js"></script>
 <script src="{{urlpath}}/vw_static/admin_users.js"></script>
 <script src="{{urlpath}}/vw_static/jdenticon-3.3.0.js"></script>

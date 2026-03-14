@@ -7,35 +7,34 @@
             <div class="col-md">
                 <dl class="row">
                     <dt class="col-sm-5">Установленная версия
-                        <span class="badge bg-success d-none" id="server-success" title="Установлена последняя версия.">ОК</span>
-                        <span class="badge bg-warning text-dark d-none" id="server-warning" title="Похоже, обновление уже доступно.">Обновление</span>
-                        <span class="badge bg-info text-dark d-none" id="server-branch" title="Это разветвленная версия.">Разветвленная</span>
+                        <span class="badge bg-success d-none abbr-badge" id="server-success" title="Установлена последняя версия.">ОК</span>
+                        <span class="badge bg-warning text-dark d-none abbr-badge" id="server-warning" title="Доступно обновление.">Обновление</span>
+                        <span class="badge bg-info text-dark d-none abbr-badge" id="server-branch" title="Это разветвленная версия.">Разветвленная</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="server-installed">{{page_data.current_release}}</span>
                     </dd>
                     <dt class="col-sm-5">Последняя версия
-                        <span class="badge bg-secondary d-none" id="server-failed" title="Не удалось определить последнюю версию.">Неизвестно</span>
+                        <span class="badge bg-secondary d-none abbr-badge" id="server-failed" title="Не удалось определить последнюю версию.">Неизвестно</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="server-latest">{{page_data.latest_release}}<span id="server-latest-commit" class="d-none">-{{page_data.latest_commit}}</span></span>
                     </dd>
                     {{#if page_data.web_vault_enabled}}
                     <dt class="col-sm-5">Установленный веб-интерфейс
-                        <span class="badge bg-success d-none" id="web-success" title="Установлена последняя версия.">ОК</span>
-                        <span class="badge bg-warning text-dark d-none" id="web-warning" title="Похоже, обновление уже доступно.">Обновление</span>
+                        <span class="badge bg-success d-none abbr-badge" id="web-success" title="Установлена последняя версия.">ОК</span>
+                        <span class="badge bg-warning text-dark d-none abbr-badge" id="web-warning" title="Доступно обновление.">Обновление</span>
+                        <span class="badge bg-info text-dark d-none abbr-badge" id="web-prerelease" title="Вы используете предрелизную версию.">Пре-релиз</span>
                     </dt>
                     <dd class="col-sm-7">
-                        <span id="web-installed">{{page_data.web_vault_version}}</span>
+                        <span id="web-installed">{{page_data.active_web_release}}</span>
                     </dd>
-                    {{#unless page_data.running_within_container}}
                     <dt class="col-sm-5">Последняя версия веб-интерфейса
-                        <span class="badge bg-secondary d-none" id="web-failed" title="Не удалось определить последнюю версию.">Неизвестно</span>
+                        <span class="badge bg-secondary d-none abbr-badge" id="web-failed" title="Не удалось определить последнюю версию.">Неизвестно</span>
                     </dt>
                     <dd class="col-sm-7">
-                        <span id="web-latest">{{page_data.latest_web_build}}</span>
+                        <span id="web-latest">{{page_data.latest_web_release}}</span>
                     </dd>
-                    {{/unless}}
                     {{/if}}
                     {{#unless page_data.web_vault_enabled}}
                     <dt class="col-sm-5">Установленный веб-интерфейс</dt>
@@ -68,10 +67,11 @@
                         <span class="d-block"><b>Нет</b></span>
                     {{/unless}}
                     </dd>
-                    <dt class="col-sm-5">Параметры окружения переопределены</dt>
+                    <dt class="col-sm-5">Использует config.json</dt>
                     <dd class="col-sm-7">
                     {{#if page_data.overrides}}
-                        <span class="d-block" title="Следующее было переопределено: {{page_data.overrides}}"><b>Yes</b></span>
+                        <span class="d-inline"><b>Да</b></span>
+                        <span class="badge bg-info text-dark abbr-badge" title="Переменные окружения переопределены файлом config.json.&#013;&#010;{{page_data.overrides}}">Подробнее</span>
                     {{/if}}
                     {{#unless page_data.overrides}}
                         <span class="d-block"><b>Нет</b></span>
@@ -90,10 +90,10 @@
                     {{#if page_data.ip_header_exists}}
                     <dt class="col-sm-5">IP заголовок
                     {{#if page_data.ip_header_match}}
-                        <span class="badge bg-success" title="Параметр IP_HEADER корректен">Соответствует</span>
+                        <span class="badge bg-success abbr-badge" title="Параметр IP_HEADER корректен.">Соответствует</span>
                     {{/if}}
                     {{#unless page_data.ip_header_match}}
-                        <span class="badge bg-danger" title="Параметр IP_HEADER не корректен. IP в логах не корректен">Не соответствует</span>
+                        <span class="badge bg-danger abbr-badge" title="Параметр IP_HEADER не корректен. IP в логах может быть неверным.">Не соответствует</span>
                     {{/unless}}
                     </dt>
                     <dd class="col-sm-7">
@@ -109,10 +109,10 @@
                     {{!-- End if IP Header Exists --}}
                     <dt class="col-sm-5">Доступ в интернет
                     {{#if page_data.has_http_access}}
-                        <span class="badge bg-success" title="Доступ к интернету присутствует.">ОК</span>
+                        <span class="badge bg-success abbr-badge" title="Доступ к интернету присутствует.">ОК</span>
                     {{/if}}
                     {{#unless page_data.has_http_access}}
-                        <span class="badge bg-danger" title="Нет доступа к интернету.">Ошибка</span>
+                        <span class="badge bg-danger abbr-badge" title="Нет доступа к интернету.">Ошибка</span>
                     {{/unless}}
                     </dt>
                     <dd class="col-sm-7">
@@ -134,8 +134,8 @@
                     </dd>
                     <dt class="col-sm-5">Websocket включен
                         {{#if page_data.enable_websocket}}
-                        <span class="badge bg-success d-none" id="websocket-success" title="Подключение через Websocket работает">OK</span>
-                        <span class="badge bg-danger d-none" id="websocket-error" title="Ошибка подключения через Websocket, проверьте конфигурацию вашего reverse proxy сервера!">Ошибка</span>
+                        <span class="badge bg-success d-none abbr-badge" id="websocket-success" title="Подключение через Websocket работает.">ОК</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="websocket-error" title="Ошибка подключения через Websocket, проверьте конфигурацию вашего reverse proxy сервера!">Ошибка</span>
                         {{/if}}
                     </dt>
                     <dd class="col-sm-7">
@@ -147,23 +147,27 @@
                     {{/unless}}
                     </dd>
                     <dt class="col-sm-5">DNS (github.com)
-                        <span class="badge bg-success d-none" id="dns-success" title="DNS запросы работают!">ОК</span>
-                        <span class="badge bg-danger d-none" id="dns-warning" title="DNS запросы не работают.">Ошибка</span>
+                        <span class="badge bg-success d-none abbr-badge" id="dns-success" title="DNS запросы работают!">ОК</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="dns-warning" title="DNS запросы не работают.">Ошибка</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="dns-resolved">{{page_data.dns_resolved}}</span>
                     </dd>
-                    <dt class="col-sm-5">Дата и время (локально)</dt>
+                    <dt class="col-sm-5">Дата и время (локально)
+                        {{#if page_data.tz_env}}
+                            <span class="badge bg-success abbr-badge" title="Настроена переменная окружения TZ">{{page_data.tz_env}}</span>
+                        {{/if}}
+                    </dt>
                     <dd class="col-sm-7">
                         <span><b>Сервер:</b> {{page_data.server_time_local}}</span>
                     </dd>
                     <dt class="col-sm-5">Дата и время (UTC)
-                        <span class="badge bg-success d-none" id="time-success" title="Время работы сервера и браузера находится в пределах 15 секунд друг от друга.">Сервер/Браузер: ОК</span>
-                        <span class="badge bg-danger d-none" id="time-warning" title="Время работы сервера и браузера отличается более чем на 15 секунд.">Сервер/Браузер: ошибка</span>
-                        <span class="badge bg-success d-none" id="ntp-server-success" title="Время сервера и NTP находятся в пределах 15 секунд друг от друга.">Сервер/NTP: OK</span>
-                        <span class="badge bg-danger d-none" id="ntp-server-warning" title="Время сервера и NTP различаются более чем на 15 секунд.">Сервер/NTP: ошибка</span>
-                        <span class="badge bg-success d-none" id="ntp-browser-success" title="Время в браузере и время NTP находятся в пределах 15 секунд друг от друга.">Браузер/NTP: ОК</span>
-                        <span class="badge bg-danger d-none" id="ntp-browser-warning" title="Время в браузере и время NTP отличаются более чем на 15 секунд.">Браузер/NTP: ошибка</span>
+                        <span class="badge bg-success d-none abbr-badge" id="time-success" title="Время работы сервера и браузера находится в пределах 15 секунд друг от друга.">Сервер/Браузер: ОК</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="time-warning" title="Время работы сервера и браузера отличается более чем на 15 секунд.">Сервер/Браузер: ошибка</span>
+                        <span class="badge bg-success d-none abbr-badge" id="ntp-server-success" title="Время сервера и NTP находятся в пределах 15 секунд друг от друга.">Сервер/NTP: OK</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="ntp-server-warning" title="Время сервера и NTP различаются более чем на 15 секунд.">Сервер/NTP: ошибка</span>
+                        <span class="badge bg-success d-none abbr-badge" id="ntp-browser-success" title="Время в браузере и время NTP находятся в пределах 15 секунд друг от друга.">Браузер/NTP: ОК</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="ntp-browser-warning" title="Время в браузере и время NTP отличаются более чем на 15 секунд.">Браузер/NTP: ошибка</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="ntp-time" class="d-block"><b>NTP:</b> <span id="ntp-server-string">{{page_data.ntp_time}}</span></span>
@@ -172,18 +176,18 @@
                     </dd>
 
                     <dt class="col-sm-5">Конфигурация домена
-                        <span class="badge bg-success d-none" id="domain-success" title="Переменная DOMAIN совпадает с URI браузера и, похоже, настроена правильно.">Соответствует</span>
-                        <span class="badge bg-danger d-none" id="domain-warning" title="Переменная DOMAIN не совпадает с URI браузера.&#013;&#010;Похоже, что переменная DOMAIN настроена неправильно.&#013;&#010;Некоторые функции могут работать не так, как ожидалось!">Не соответствует</span>
-                        <span class="badge bg-success d-none" id="https-success" title="Настроено для использования HTTPS">HTTPS</span>
-                        <span class="badge bg-danger d-none" id="https-warning" title="Не настроено для использования HTTPS.&#013;&#010;Некоторые функции могут работать не так, как ожидалось!">Нет HTTPS</span>
+                        <span class="badge bg-success d-none abbr-badge" id="domain-success" title="Переменная DOMAIN совпадает с URI браузера и, похоже, настроена правильно.">Соответствует</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="domain-warning" title="Переменная DOMAIN не совпадает с URI браузера.&#013;&#010;Похоже, что переменная DOMAIN настроена неправильно.&#013;&#010;Некоторые функции могут работать не так, как ожидалось!">Не соответствует</span>
+                        <span class="badge bg-success d-none abbr-badge" id="https-success" title="Настроено для использования HTTPS">HTTPS</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="https-warning" title="Не настроено для использования HTTPS.&#013;&#010;Некоторые функции могут работать не так, как ожидалось!">Нет HTTPS</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="domain-server" class="d-block"><b>Сервер:</b> <span id="domain-server-string">{{page_data.admin_url}}</span></span>
                         <span id="domain-browser" class="d-block"><b>Браузер:</b> <span id="domain-browser-string"></span></span>
                     </dd>
                     <dt class="col-sm-5">Проверка HTTP ответа
-                        <span class="badge bg-success d-none" id="http-response-success" title="Все заголовки и ответы на HTTP-запросы выглядят нормально">OK</span>
-                        <span class="badge bg-danger d-none" id="http-response-warning" title="Некоторые заголовки или ответы на HTTP-запросы возвращают недопустимые данные!">Ошибка</span>
+                        <span class="badge bg-success d-none abbr-badge" id="http-response-success" title="Все заголовки и ответы на HTTP-запросы выглядят нормально.">ОК</span>
+                        <span class="badge bg-danger d-none abbr-badge" id="http-response-warning" title="Некоторые заголовки или ответы на HTTP-запросы возвращают недопустимые данные!">Ошибка</span>
                     </dt>
                     <dd class="col-sm-7">
                         <span id="http-response-errors" class="d-block"></span>
