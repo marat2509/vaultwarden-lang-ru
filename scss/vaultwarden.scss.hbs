@@ -20,30 +20,78 @@ a[href$="/settings/sponsored-families"] {
   @extend %vw-hide;
 }
 
-/* Hide the `Enterprise Single Sign-On` button on the login page */
-a[routerlink="/sso"] {
+/* Hide the sso `Email` input field */
+{{#if (not sso_enabled)}}
+.vw-email-sso {
   @extend %vw-hide;
 }
+{{/if}}
+
+/* Hide the default/continue `Email` input field */
+{{#if sso_enabled}}
+.vw-email-continue {
+  @extend %vw-hide;
+}
+{{/if}}
+
+/* Hide the `Continue` button on the login page */
+{{#if sso_enabled}}
+.vw-continue-login {
+  @extend %vw-hide;
+}
+{{/if}}
+
+/* Hide the `Enterprise Single Sign-On` button on the login page */
+{{#if (webver ">=2025.5.1")}}
+{{#if (not sso_enabled)}}
+.vw-sso-login {
+  @extend %vw-hide;
+}
+{{/if}}
+{{else}}
+app-root ng-component > form > div:nth-child(1) > div > button[buttontype="secondary"].\!tw-text-primary-600:nth-child(4) {
+  @extend %vw-hide;
+}
+{{/if}}
+
+/* Hide the `Log in with passkey` settings */
+app-user-layout app-password-settings app-webauthn-login-settings {
+  @extend %vw-hide;
+}
+/* Hide Log in with passkey on the login page */
+{{#if (webver ">=2025.5.1")}}
+.vw-passkey-login {
+  @extend %vw-hide;
+}
+{{else}}
+app-root ng-component > form > div:nth-child(1) > div > button[buttontype="secondary"].\!tw-text-primary-600:nth-child(3) {
+  @extend %vw-hide;
+}
+{{/if}}
+
+/* Hide the or text followed by the two buttons hidden above */
+{{#if (webver ">=2025.5.1")}}
+{{#if (or (not sso_enabled) sso_only)}}
+.vw-or-text {
+  @extend %vw-hide;
+}
+{{/if}}
+{{else}}
+app-root ng-component > form > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) {
+  @extend %vw-hide;
+}
+{{/if}}
+
+/* Hide the `Other` button on the login page */
+{{#if (or (not sso_enabled) sso_only)}}
+.vw-other-login {
+  @extend %vw-hide;
+}
+{{/if}}
 
 /* Hide Two-Factor menu in Organization settings */
 bit-nav-item[route="settings/two-factor"],
 a[href$="/settings/two-factor"] {
-  @extend %vw-hide;
-}
-
-/* Hide Business Owned checkbox */
-app-org-info > form:nth-child(1) > div:nth-child(3) {
-  @extend %vw-hide;
-}
-
-/* Hide the `This account is owned by a business` checkbox and label */
-#ownedBusiness,
-label[for^="ownedBusiness"] {
-  @extend %vw-hide;
-}
-
-/* Hide Business Name */
-app-org-account form div bit-form-field.tw-block:nth-child(3) {
   @extend %vw-hide;
 }
 
@@ -53,7 +101,7 @@ app-organization-plans > form > bit-section:nth-child(2) {
 }
 
 /* Hide Collection Management Form */
-app-org-account form.ng-untouched:nth-child(6) {
+app-org-account form.ng-untouched:nth-child(5) {
   @extend %vw-hide;
 }
 
@@ -73,11 +121,6 @@ bit-dialog div.tw-col-span-4:has(input[formcontrolname*="access"], input[formcon
   @extend %vw-hide;
 }
 
-/* Hide Log in with passkey */
-app-login div.tw-flex:nth-child(4) {
-  @extend %vw-hide;
-}
-
 /* Change collapsed menu icon to Vaultwarden */
 bit-nav-logo bit-nav-item a:before {
   content: "";
@@ -90,26 +133,55 @@ bit-nav-logo bit-nav-item a:before {
 bit-nav-logo bit-nav-item .bwi-shield {
   @extend %vw-hide;
 }
+/* Hide Device Login Protection button on user settings page */
+app-user-layout app-danger-zone button:nth-child(1) {
+  @extend %vw-hide;
+}
 /**** END Static Vaultwarden Changes ****/
 /**** START Dynamic Vaultwarden Changes ****/
 {{#if signup_disabled}}
+/* From web vault 2025.1.2 and onwards, the signup button is hidden
+  when signups are disabled as the web vault checks the /api/config endpoint.
+  Note that the clients tend to cache this endpoint for about 1 hour, so it might
+  take a while for the change to take effect. To avoid the button appearing
+  when it shouldn't, we'll keep this style in place for a couple of versions */
 /* Hide the register link on the login screen */
+{{#if (webver "<2025.3.0")}}
 app-login form div + div + div + div + hr,
 app-login form div + div + div + div + hr + p {
   @extend %vw-hide;
 }
+{{else}}
+app-root a[routerlink="/signup"] {
+  @extend %vw-hide;
+}
+{{/if}}
 {{/if}}
 
-{{#unless mail_enabled}}
+{{#if remember_2fa_disabled}}
+/* Hide checkbox to remember 2FA token for 30 days */
+app-two-factor-auth > form > bit-form-control {
+  @extend %vw-hide;
+}
+{{/if}}
+
+{{#unless mail_2fa_enabled}}
 /* Hide `Email` 2FA if mail is not enabled */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(1) {
+.providers-2fa-1 {
   @extend %vw-hide;
 }
 {{/unless}}
 
 {{#unless yubico_enabled}}
 /* Hide `YubiKey OTP security key` 2FA if it is not enabled */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(4) {
+.providers-2fa-3 {
+  @extend %vw-hide;
+}
+{{/unless}}
+
+{{#unless webauthn_2fa_supported}}
+/* Hide `Passkey` 2FA if it is not supported */
+.providers-2fa-7 {
   @extend %vw-hide;
 }
 {{/unless}}
@@ -124,6 +196,19 @@ bit-nav-item[route="settings/emergency-access"] {
 {{#unless sends_allowed}}
 /* Hide Sends if not allowed */
 bit-nav-item[route="sends"] {
+  @extend %vw-hide;
+}
+{{/unless}}
+
+{{#unless password_hints_allowed}}
+/* Hide password hints if not allowed */
+a[routerlink="/hint"],
+{{#if (webver "<2025.12.2")}}
+app-change-password > form > .form-group:nth-child(5),
+auth-input-password > form > bit-form-field:nth-child(4) {
+{{else}}
+.vw-password-hint {
+{{/if}}
   @extend %vw-hide;
 }
 {{/unless}}
