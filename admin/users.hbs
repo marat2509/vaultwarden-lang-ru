@@ -1,4 +1,4 @@
-<main class="container-xl">
+<main class="container-xxl">
     <div id="users-block" class="my-3 p-3 rounded shadow">
         <h6 class="border-bottom pb-2 mb-3">Зарегистрированные пользователи</h6>
         <div class="table-responsive-xl small">
@@ -14,7 +14,7 @@
                         <th class="vw-entries">Записей</th>
                         <th class="vw-attachments">Вложения</th>
                         <th class="vw-organizations">Организации</th>
-                        <th class="vw-actions">Действия</th>
+                        <th class="vw-actions text-end">Действия</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,14 +43,14 @@
                         </td>
                         {{#if ../sso_enabled}}
                         <td>
-                            <span class="d-block">{{sso_identifier}}</span>
+                            <span class="d-block text-break text-wrap">{{sso_identifier}}</span>
                         </td>
                         {{/if}}
                         <td>
-                            <span class="d-block">{{created_at}}</span>
+                            <span class="d-block" data-sort-type="date-iso">{{created_at}}</span>
                         </td>
                         <td>
-                            <span class="d-block">{{last_active}}</span>
+                            <span class="d-block" data-sort-type="date-iso">{{last_active}}</span>
                         </td>
                         <td>
                             <span class="d-block">{{cipher_count}}</span>
@@ -153,7 +153,6 @@
 </main>
 
 <link rel="stylesheet" href="{{urlpath}}/vw_static/datatables.css" />
-<script src="{{urlpath}}/vw_static/jquery-4.0.0.slim.js"></script>
 <script src="{{urlpath}}/vw_static/datatables.js"></script>
 <script src="{{urlpath}}/vw_static/admin_users.js"></script>
 <script src="{{urlpath}}/vw_static/jdenticon-3.3.0.js"></script>
